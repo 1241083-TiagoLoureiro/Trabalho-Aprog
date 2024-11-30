@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -11,16 +12,19 @@ public class testes {
             planeamento = Lerficheiro(FICHEIRO_PLANEAMENTO);
             System.out.println("a) planeamento (km/dia/veiculo)");
             mostrarCabecalho(planeamento);
+            planeamentoPorDia(planeamento);
 
 
 
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Erro: Ficheiro nao encontrado");
         }
     }
 
+    //a)
     public static int [][] Lerficheiro(String ficheiro) throws FileNotFoundException {
-        Scanner sc = new Scanner(ficheiro);
+        Scanner sc = new Scanner( new File(ficheiro));
+        sc.nextLine();
         int nVeiculos = sc.nextInt();
         int nDias = sc.nextInt();
         int[][] matrizPlaneamento = new int[nVeiculos][nDias];
@@ -50,7 +54,7 @@ public class testes {
 
     public static void planeamentoPorDia(int[][] matrizPlaneamento) {
         for (int i = 0; i < matrizPlaneamento.length; i++) {
-            System.out.printf("%-3d", i);
+            System.out.printf("V%-3d:", i);
             for (int j = 0; j < matrizPlaneamento[i].length; j++) {
                 System.out.printf("%8d", matrizPlaneamento[i][j]);
                 System.out.print(" ");
